@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "73746363157",
+    "firebase_url": "https://virtual-store-b346d.firebaseio.com",
+    "project_id": "virtual-store-b346d",
+    "storage_bucket": "virtual-store-b346d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73746363157:android:d22cd56e5f656da2",
+        "android_client_info": {
+          "package_name": "br.com.facsoft.virtualstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73746363157-cfo0k6bb99brehknc1edg4b0qadouqq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.facsoft.virtualstore",
+            "certificate_hash": "75ea71a02ace740bd53d125d077c62b47c84261f"
+          }
+        },
+        {
+          "client_id": "73746363157-puc4v0rtpthotgc4ufd7hd1rou2qg5q4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.facsoft.virtualstore",
+            "certificate_hash": "ccb10188ef4af4f5ac7f20c376e45c85856196f5"
+          }
+        },
+        {
+          "client_id": "73746363157-uis560e4gt9e2dlrphoeqiqjegjl6pjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb-UyQmtAs-yOzh1OL_MURVMli5ep_mfk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73746363157-uis560e4gt9e2dlrphoeqiqjegjl6pjd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
