@@ -8,9 +8,9 @@ class CartModel extends Model {
   UserModel _user;
   List<CartProduct> _products = [];
   Firestore _firestore = Firestore.instance;
-  bool isLoading = false;
-  String couponCode;
-  int discountPercentage;
+  bool _isLoading = false;
+  String _couponCode;
+  double _discountPercentage = 0.0;
 
   CartModel(this._user) {
     if (_user.isLoggedIn()) _loadCartItems();
@@ -18,6 +18,12 @@ class CartModel extends Model {
 
   static CartModel of(BuildContext context) =>
       ScopedModel.of<CartModel>(context);
+
+  void couponDiscount(String code, double percentage) {
+    _couponCode = code;
+    _discountPercentage = percentage;
+    notifyListeners();
+  }
 
   void addCartItem(CartProduct cartProduct) {
     _products.add(cartProduct);
@@ -41,6 +47,32 @@ class CartModel extends Model {
   }
 
   List<CartProduct> get products => _products;
+
+  bool get isLoading => _isLoading;
+
+  get couponCode => _couponCode;
+
+  double get discountPercentage => _discountPercentage;
+
+  double get discount {
+    return productsPrice * _discountPercentage / 100;
+  }
+
+  double get shipPrice {
+    return 10.00;
+  }
+
+  double get productsPrice {
+    double price = 0.0;
+    _products.forEach((p) {
+      if (p.productData != null) price += p.quantity * p.productData.price;
+    });
+    return price;
+  }
+
+  void updatePrices() {
+    notifyListeners();
+  }
 
   void removeCartItem(CartProduct product) {
     _firestore

@@ -11,6 +11,7 @@ class CartTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartModel.of(context).updatePrices();
     return Card(
       margin: EdgeInsets.symmetric(
         vertical: 4.0,

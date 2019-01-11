@@ -15,6 +15,9 @@ class CartPrice extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: ScopedModelDescendant<CartModel>(
           builder: (context, child, model) {
+            double price = model.productsPrice;
+            double discount = model.discount;
+            double shipPrice = model.shipPrice;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -30,7 +33,7 @@ class CartPrice extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text('Subtotal'),
-                    Text('R\$ 0.00'),
+                    Text('R\$ ${price.toStringAsFixed(2)}'),
                   ],
                 ),
                 Divider(),
@@ -38,7 +41,7 @@ class CartPrice extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text('Desconto'),
-                    Text('R\$ 0.00'),
+                    Text('R\$ ${discount.toStringAsFixed(2)}'),
                   ],
                 ),
                 Divider(),
@@ -46,7 +49,7 @@ class CartPrice extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text('Entrega'),
-                    Text('R\$ 0.00'),
+                    Text('R\$ ${shipPrice.toStringAsFixed(2)}'),
                   ],
                 ),
                 Divider(),
@@ -58,7 +61,8 @@ class CartPrice extends StatelessWidget {
                   children: <Widget>[
                     Text('Total',
                         style: TextStyle(fontWeight: FontWeight.w500)),
-                    Text('R\$ 0.00',
+                    Text(
+                        'R\$ ${(price + shipPrice - discount).toStringAsFixed(2)}',
                         style: TextStyle(
                             fontSize: 16.0,
                             color: Theme.of(context).primaryColor))
@@ -68,10 +72,11 @@ class CartPrice extends StatelessWidget {
                   height: 16.0,
                 ),
                 RaisedButton(
-                    child: Text('Finalizar Pedido'),
-                    textColor: Colors.white,
-                    color: Theme.of(context).primaryColor,
-                    onPressed: _buy,)
+                  child: Text('Finalizar Pedido'),
+                  textColor: Colors.white,
+                  color: Theme.of(context).primaryColor,
+                  onPressed: _buy,
+                )
               ],
             );
           },
