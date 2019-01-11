@@ -95,6 +95,41 @@ class CartModel extends Model {
     _updateProduct(product);
   }
 
+  Future<String> finishOrder() async {
+    if (_products.length == 0) return null;
+    _isLoading = true;
+    notifyListeners();
+    DocumentReference refOrder = await _firestore.collection('orders').add({
+      'userId': _user.firebaseUser.uid,
+      'products': _products.map((p) => p.toMap()).toList(),
+      'shipPrice': shipPrice,
+      'discount': discount,
+      'totalPrice': productsPrice - discount + shipPrice,
+      'status': 1
+    });
+    await _firestore
+        .collection('users')
+        .document(_user.firebaseUser.uid)
+        .collection('orders')
+        .document(refOrder.documentID)
+        .setData({'orderId': refOrder.documentID});
+
+    QuerySnapshot query = await _firestore
+        .collection('users')
+        .document(_user.firebaseUser.uid)
+        .collection('cart')
+        .getDocuments();
+    query.documents.forEach((doc) {
+      doc.reference.delete();
+    });
+    _products.clear();
+    _couponCode = null;
+    _discountPercentage = 0.0;
+    _isLoading = false;
+    notifyListeners();
+    return refOrder.documentID;
+  }
+
   void _updateProduct(CartProduct product) {
     _firestore
         .collection('users')
