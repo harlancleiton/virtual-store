@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_store/tabs/home_tab.dart';
+import 'package:virtual_store/tabs/orders_tab.dart';
 import 'package:virtual_store/tabs/products_tab.dart';
 import 'package:virtual_store/widgets/cart_button.dart';
 import 'package:virtual_store/widgets/custom_drawer.dart';
@@ -30,8 +31,24 @@ class _HomeScreenState extends State<HomeScreen> {
           floatingActionButton: CardButton(),
           body: ProductsTab(),
         ),
-        Container(color: Colors.blue),
-        Container(color: Colors.amber)
+        Scaffold(
+          appBar: AppBar(
+            title: Text('Meus Pedidos'),
+            centerTitle: true,
+          ),
+          drawer: CustomDrawer(_pageController),
+          floatingActionButton: CardButton(),
+          body: Container(color: Colors.blue),
+        ),
+        Scaffold(
+          appBar: AppBar(
+            title: Text('Meus Pedidos'),
+            centerTitle: true,
+          ),
+          drawer: CustomDrawer(_pageController),
+          floatingActionButton: CardButton(),
+          body: OrdersTab(),
+        )
       ],
     );
   }

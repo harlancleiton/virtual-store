@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
             return Center(
               child: CircularProgressIndicator(),
             );
-          if (!UserModel.of(context).isLoggedIn())
+          if (!UserModel.of(context).isLoggedIn()) {
             return Container(
                 padding: EdgeInsets.all(16.0),
                 child: Column(
@@ -65,7 +65,7 @@ class CartScreen extends StatelessWidget {
                     )
                   ],
                 ));
-          else if (model.products == null || model.products.length == 0) {
+          } else if (model.products == null || model.products.length == 0) {
             return Center(
               child: Text(
                 'Nenhum produto no carrinho',
